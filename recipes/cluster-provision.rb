@@ -34,24 +34,20 @@ machine 'bootstrap-backend' do
   converge true
 end
 
-%w{ actions-source.json webui_priv.pem }.each do |analytics_file|
-
+%w( actions-source.json webui_priv.pem ).each do |analytics_file|
   machine_file "/etc/opscode-analytics/#{analytics_file}" do
     local_path "/tmp/stash/#{analytics_file}"
     machine 'bootstrap-backend'
     action :download
   end
-
 end
 
-%w{ pivotal.pem webui_pub.pem }.each do |opscode_file|
-
+%w( pivotal.pem webui_pub.pem ).each do |opscode_file|
   machine_file "/etc/opscode/#{opscode_file}" do
     local_path "/tmp/stash/#{opscode_file}"
     machine 'bootstrap-backend'
     action :download
   end
-
 end
 
 machine 'frontend' do

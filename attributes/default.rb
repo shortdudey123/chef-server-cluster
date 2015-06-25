@@ -27,11 +27,11 @@ default['chef-server-cluster']['chef-provisioner-key-name'] = 'hc-metal-provisio
 # be usable.
 default['chef-server-cluster']['driver'] = {
                                             'gems' => [
-                                                      {
-                                                        'name' => 'chef-provisioning-aws',
-                                                        'require' => 'chef/provisioning/aws_driver'
-                                                      }
-                                                     ],
+                                              {
+                                                'name' => 'chef-provisioning-aws',
+                                                'require' => 'chef/provisioning/aws_driver'
+                                              }
+                                            ],
                                             'with-parameter' => 'aws::us-west-2'
                                            }
 

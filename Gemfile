@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'berkshelf', '~> 3.0.0'
-gem 'chefspec', '~> 3.3.1'
-gem 'foodcritic', '~> 3.0'
-gem 'rubocop', '~> 0.18.0'
+gem 'berkshelf', '~> 3.2'
+gem 'chefspec', '~> 4.2'
+gem 'foodcritic', '~> 4.0'
+gem 'rubocop', '~> 0.32.0'
 
 group :integration do
   gem 'test-kitchen', '~> 1.0'

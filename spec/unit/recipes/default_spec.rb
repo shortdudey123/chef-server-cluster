@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'chef-server-cluster::default' do
-  let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it 'creates the `/etc/opscode` directory' do
     expect(chef_run).to create_directory('/etc/opscode')

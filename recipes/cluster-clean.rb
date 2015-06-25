@@ -20,24 +20,15 @@
 
 include_recipe 'chef-server-cluster::setup-provisioner'
 
-machine 'analytics' do
-  action :destroy
+%w( frontend bootstrap-backend ).each do |hostname|
+  machine hostname do
+    action :destroy
+  end
 end
 
-machine 'frontend' do
-  action :destroy
-end
-
-machine 'bootstrap-backend' do
-  action :destroy
-end
-
-directory '/tmp/ssh' do
-  recursive true
-  action :delete
-end
-
-directory '/tmp/stash' do
-  recursive true
-  action :delete
+%w( /tmp/ssh /tmp/stash ).each do |path|
+  directory path do
+    recursive true
+    action :delete
+  end
 end

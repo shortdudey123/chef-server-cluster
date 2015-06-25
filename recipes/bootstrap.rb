@@ -34,7 +34,7 @@ chef_server_config = data_bag_item('chef_server', 'topology').to_hash
 chef_server_config.delete('id')
 
 # TODO: (jtimberman) Replace this with partial_search.
-chef_servers = search('node', 'chef-server-cluster_role:backend').map do |server| #~FC003
+chef_servers = search('node', 'chef-server-cluster_role:backend').map do |server| # ~FC003
   {
     :fqdn => server['fqdn'],
     :ipaddress => server['ipaddress'],
@@ -47,12 +47,12 @@ end
 # bootstrapping after all)
 if chef_servers.empty?
   chef_servers = [
-                  {
-                    :fqdn => node['fqdn'],
-                    :ipaddress => node['ipaddress'],
-                    :bootstrap => true,
-                    :role => 'backend'
-                  }
+                    {
+                      :fqdn => node['fqdn'],
+                      :ipaddress => node['ipaddress'],
+                      :bootstrap => true,
+                      :role => 'backend'
+                    }
                  ]
 end
 
@@ -94,7 +94,7 @@ file '/etc/opscode-analytics/actions-source.json' do
   subscribes :create, 'chef_server_ingredient[chef-server-core]', :immediately
 end
 
-file'/etc/opscode-analytics/webui_priv.pem' do
+file '/etc/opscode-analytics/webui_priv.pem' do
   mode 00644
   subscribes :create, 'chef_server_ingredient[chef-server-core]', :immediately
 end
@@ -103,7 +103,7 @@ file '/etc/opscode/pivotal.pem' do
   mode 00644
   # without this guard, we create an empty file, causing bootstrap to
   # not actually work, as it checks the presence of this file.
-  only_if { ::File.exists?('/etc/opscode/pivotal.pem') }
+  only_if { ::File.exist?('/etc/opscode/pivotal.pem') }
   subscribes :create, 'chef_server_ingredient[chef-server-core]', :immediately
 end
 
